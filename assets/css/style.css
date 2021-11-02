@@ -22,7 +22,7 @@ main {
 
 .form-input {
     margin: 15px;
-    width: 70%;
+    width: 75%;
     align-content: center;
 }
 
@@ -31,5 +31,5 @@ main {
 }
 
 .btn {
-    margin-left: 35px
+    margin-left: 48px
 }
