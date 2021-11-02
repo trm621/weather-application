@@ -8,3 +8,24 @@ h1 {
     padding: 80px;
     color: white;
 }
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.card-header {
+    padding: 5%;
+    text-align: center;
+}
+
+.form-input {
+    margin: 15px;
+    width: 70%;
+    align-content: center;
+}
+
+.form-section {
+    padding: 15px;
+}
