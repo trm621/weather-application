@@ -16,7 +16,7 @@ main {
 }
 
 .card-header {
-    padding: 5%;
+    padding: 2%;
     text-align: center;
 }
 
@@ -28,4 +28,8 @@ main {
 
 .form-section {
     padding: 15px;
+}
+
+.btn {
+    margin-left: 35px
 }
