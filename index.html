@@ -12,7 +12,7 @@
 <h1>Weather Dashboard</h1>
 
 <main>
-    <div class="card-container col-12 col-md-3">
+    <div id="card-container" class="card-container col-12 col-md-3">
       <div class="card">
         <h3 class="bg-dark text-light card-header">Search By City</h3>
         <form id="user-form" class="form-section">
@@ -23,11 +23,21 @@
       </div>
     </div>
 
+    <div class="row">
     <div class="weather-container col-6 col-md-6">
-      <h2 class="text-light">Forecast:</h2>
+      <h2 class="text-light">Today's Forecast:</h2>
       <div class="list-group">
       </div>
+      </div>
     </div>
+
+    <div class="row">
+    <div class="weather-container col-6 col-md-6">
+        <h2 class="text-light">5 Day Forecast:</h2>
+        <div class="list-group">
+        </div>
+        </div>
+      </div>
   </main>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>

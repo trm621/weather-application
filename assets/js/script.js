@@ -1,5 +1,8 @@
 var cityInputEl = document.querySelector("#city");
 var userFormEl = document.querySelector("#user-form");
+var cardContainer = document.querySelector("#card-container");
+var divEl = document.createElement("div");
+var cities = [];
 
 var submitCity = function(event) {
     event.preventDefault();
@@ -10,6 +13,9 @@ var submitCity = function(event) {
         getCurrentWeather(cityName);
         getFiveDayForecast(cityName);
         displayWeather();
+
+        localStorage.setItem("city", cityName);
+        displayCities();
         cityInputEl.value = "";
     }
     else {
@@ -32,6 +38,13 @@ var getCurrentWeather = function(city) {
     });
 };
 
+var displayCities = function() {
+    displayedCity = localStorage.getItem("city");
+    divEl.textContent = displayedCity;
+    divEl.setAttribute("style", "background-color: white; text-align: center; padding: 20px;")
+    cardContainer.appendChild(divEl);
+}
+
 var getFiveDayForecast = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=2bffd4e95c0b4e30175b53413f54c060";
 
@@ -51,5 +64,7 @@ var displayWeather = function() {
 
 }
 
+
 userFormEl.addEventListener('submit', submitCity);
 
+displayCities();
