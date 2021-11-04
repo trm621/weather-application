@@ -3,11 +3,14 @@ var userFormEl = document.querySelector("#user-form");
 var cardContainer = document.querySelector("#card-container");
 var currentWeatherContainer = document.querySelector("#weather-container");
 var divEl = document.createElement("div");
+var searchHistory = document.getElementById("#history")
+var listItem = document.createElement("li");
 
 var displayCurrentWeather = function(cityName) {
-    divEl.innerHTML = cityName;
-    divEl.appendChild(userFormEl);
-    divEl.setAttribute("style", "font-size:30px; text-align:center;")
+
+    listItem.innerHTML = cityName;
+    searchHistory.appendChild(listItem)
+    listItem.setAttribute("style", "font-size:30px; text-align:center;")
 }
 
 var submitCity = function(event) {
