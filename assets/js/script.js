@@ -6,12 +6,12 @@ var divEl = document.createElement("div");
 var searchHistory = document.getElementById("#history")
 var listItem = document.createElement("li");
 
-// var displayCurrentWeather = function(cityName) {
+var displayCurrentWeather = function(cityInputEl) {
 
-//     listItem.textContent = cityName;
-//     searchHistory.appendChild(listItem)
-//     listItem.setAttribute("style", "font-size:30px; text-align:center;")
-// }
+    listItem.textContent = cityInputEl;
+    searchHistory.appendChild(listItem)
+    listItem.setAttribute("style", "font-size:30px; text-align:center;")
+}
 
 var submitCity = function(event) {
     event.preventDefault();
@@ -22,7 +22,6 @@ var submitCity = function(event) {
     if (cityName) {
         getCurrentWeather(cityName);
         getFiveDayForecast(cityName);
-        // displayCurrentWeather(cityName);
     }
     else {
         alert("Please input a city.")
