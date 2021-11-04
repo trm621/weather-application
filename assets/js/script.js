@@ -1,26 +1,30 @@
 var cityInputEl = document.querySelector("#city");
 var userFormEl = document.querySelector("#user-form");
 var cardContainer = document.querySelector("#card-container");
+var currentWeatherContainer = document.querySelector("#weather-container");
 var divEl = document.createElement("div");
-var cities = [];
+
+var displayCurrentWeather = function(cityName) {
+    divEl.innerHTML = cityName;
+    divEl.appendChild(userFormEl);
+    divEl.setAttribute("style", "font-size:30px; text-align:center;")
+}
 
 var submitCity = function(event) {
     event.preventDefault();
-    
+    var saveCities = function() {
+        localStorage.setItem("" + cityName, cityName);
+    }
     var cityName = cityInputEl.value.trim();
-    
     if (cityName) {
         getCurrentWeather(cityName);
         getFiveDayForecast(cityName);
-        displayWeather();
-
-        localStorage.setItem("city", cityName);
-        displayCities();
-        cityInputEl.value = "";
+        displayCurrentWeather(cityName);
     }
     else {
         alert("Please input a city.")
     }
+    saveCities();
 };
 
 var getCurrentWeather = function(city) {
@@ -31,6 +35,7 @@ var getCurrentWeather = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
+                displayCurrentWeather(data, city)
             })
         } else {
             alert("Please input a city.")
@@ -38,12 +43,7 @@ var getCurrentWeather = function(city) {
     });
 };
 
-var displayCities = function() {
-    displayedCity = localStorage.getItem("city");
-    divEl.textContent = displayedCity;
-    divEl.setAttribute("style", "background-color: white; text-align: center; padding: 20px;")
-    cardContainer.appendChild(divEl);
-}
+
 
 var getFiveDayForecast = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=2bffd4e95c0b4e30175b53413f54c060";
@@ -60,11 +60,4 @@ var getFiveDayForecast = function(city) {
     });
 };
 
-var displayWeather = function() {
-
-}
-
-
 userFormEl.addEventListener('submit', submitCity);
-
-displayCities();

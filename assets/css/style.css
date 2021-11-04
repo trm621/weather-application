@@ -9,12 +9,6 @@ h1 {
     color: white;
 }
 
-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
-
 .card-header {
     padding: 2%;
     text-align: center;
@@ -32,4 +26,33 @@ main {
 
 .btn {
     margin-left: 48px
+}
+
+.min-100-vh {
+    min-height: 100vh;
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.justify-space-around {
+    justify-content: space-around;
+}
+
+.list-item {
+    margin-bottom: 10px;
+    padding: 1.5%;
+    text-decoration: none;
+  }
+
+#weather-card-container {
+    padding: 200px;
 }
