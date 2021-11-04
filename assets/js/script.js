@@ -4,29 +4,21 @@ var cardContainer = document.querySelector("#card-container");
 var currentWeatherContainer = document.querySelector("#weather-container");
 var divEl = document.createElement("div");
 var searchHistory = document.getElementById("#history")
-var listItem = document.createElement("li");
-
-var displayCurrentWeather = function(cityInputEl) {
-
-    listItem.textContent = cityInputEl;
-    searchHistory.appendChild(listItem)
-    listItem.setAttribute("style", "font-size:30px; text-align:center;")
-}
 
 var submitCity = function(event) {
     event.preventDefault();
-    var saveCities = function() {
-        localStorage.setItem("" + cityName, cityName);
-    }
     var cityName = cityInputEl.value.trim();
+
     if (cityName) {
-        getCurrentWeather(cityName);
-        getFiveDayForecast(cityName);
+    getCurrentWeather(cityName);
+    getFiveDayForecast(cityName);
+    localStorage.setItem("" + cityName, cityName);
+    cityInputEl.value = "";
+    displayWeather();
     }
     else {
         alert("Please input a city.")
     }
-    saveCities();
 };
 
 var getCurrentWeather = function(city) {
@@ -37,15 +29,12 @@ var getCurrentWeather = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
-                displayCurrentWeather(data, city)
             })
         } else {
             alert("Please input a city.")
         }
     });
 };
-
-
 
 var getFiveDayForecast = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=2bffd4e95c0b4e30175b53413f54c060";
@@ -61,5 +50,9 @@ var getFiveDayForecast = function(city) {
         }
     });
 };
+
+var displayWeather = function() {
+
+}
 
 userFormEl.addEventListener('submit', submitCity);
