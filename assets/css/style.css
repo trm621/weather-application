@@ -47,14 +47,12 @@ h1 {
     justify-content: space-around;
 }
 
-.list-item {
-    margin-bottom: 10px;
-    padding: 1.5%;
-    text-decoration: none;
-  }
+.card {
+    border: black solid 2px;
+}
 
-#weather-card-container {
-    padding: 100px;
+.card-info {
+    color: blue;
 }
 
 #history {

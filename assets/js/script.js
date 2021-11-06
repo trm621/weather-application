@@ -1,8 +1,8 @@
 var cityInputEl = document.querySelector("#city");
 var userFormEl = document.querySelector("#user-form");
 var cardContainer = document.querySelector("#card-container");
-var currentWeatherContainer = document.querySelector("#weather-container");
-var divEl = document.createElement("div");
+var forecast = document.querySelector("#forecast");
+var p = document.createElement("p");
 var searchHistory = document.getElementById("#history")
 
 var submitCity = function(event) {
@@ -14,7 +14,6 @@ var submitCity = function(event) {
     getFiveDayForecast(cityName);
     localStorage.setItem("" + cityName, cityName);
     cityInputEl.value = "";
-    displayWeather();
     }
     else {
         alert("Please input a city.")
@@ -29,6 +28,7 @@ var getCurrentWeather = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
+                displayCurrentWeather(data);
             })
         } else {
             alert("Please input a city.")
@@ -44,6 +44,7 @@ var getFiveDayForecast = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
+                displayFiveDayForecast(data);
             })
         } else {
             alert("Please input a city")
@@ -51,7 +52,20 @@ var getFiveDayForecast = function(city) {
     });
 };
 
-var displayWeather = function() {
+var displayCurrentWeather = function(data) {
+    let divEl = document.createElement("div");
+    divEl.classList = "card";
+
+    let h1 = document.createElement("h1")
+    h1.textContent = data.name;
+    h1.classList = "card-info";
+    divEl.appendChild(h1)
+
+    forecast.appendChild(divEl);
+    
+}
+
+var displayFiveDayForecast = function(data) {
 
 }
 
