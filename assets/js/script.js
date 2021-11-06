@@ -3,6 +3,7 @@ var userFormEl = document.querySelector("#user-form");
 var cardContainer = document.querySelector("#card-container");
 var forecast = document.querySelector("#forecast");
 var p = document.createElement("p");
+var li = document.createElement("li");
 var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
@@ -16,6 +17,11 @@ var submitCity = function(event) {
     getCurrentWeather(cityName);
     getFiveDayForecast(cityName);
     localStorage.setItem("" + cityName, cityName);
+
+    li.textContent = cityName;
+    li.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
+    cardContainer.appendChild(li);
+
     cityInputEl.value = "";
     divEl1.innerHTML = "";
     divEl2.innerHTML = "";
