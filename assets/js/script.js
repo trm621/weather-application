@@ -4,6 +4,12 @@ var cardContainer = document.querySelector("#card-container");
 var forecast = document.querySelector("#forecast");
 var p = document.createElement("p");
 var searchHistory = document.getElementById("#history")
+var divEl1 = document.createElement("div");
+var divEl2 = document.createElement("div");
+var cli1 = document.createElement("li");
+var cli2 = document.createElement("li");
+var cli3 = document.createElement("li");
+var cli4 = document.createElement("li");
 
 var submitCity = function(event) {
     event.preventDefault();
@@ -21,7 +27,7 @@ var submitCity = function(event) {
 };
 
 var getCurrentWeather = function(city) {
-    var apiUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=2bffd4e95c0b4e30175b53413f54c060";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=2bffd4e95c0b4e30175b53413f54c060";
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -37,7 +43,7 @@ var getCurrentWeather = function(city) {
 };
 
 var getFiveDayForecast = function(city) {
-    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=2bffd4e95c0b4e30175b53413f54c060";
+    var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=2bffd4e95c0b4e30175b53413f54c060";
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
@@ -53,19 +59,141 @@ var getFiveDayForecast = function(city) {
 };
 
 var displayCurrentWeather = function(data) {
-    let divEl = document.createElement("div");
-    divEl.classList = "card";
-
+    divEl1.classList = "card";
     let h1 = document.createElement("h1")
-    h1.textContent = data.name;
-    h1.classList = "card-info";
-    divEl.appendChild(h1)
+    h1.textContent = data.city.name + " (" + moment().format("dddd, MMMM Do, YYYY") + ")";
+    h1.classList = "card-header bg-light";
+    divEl1.appendChild(h1);
 
-    forecast.appendChild(divEl);
-    
+    cli1.textContent = "Current Temp: " + data.list[0].main.temp + "° F"
+    cli1.classList = "card-info";
+    h1.appendChild(cli1);
+
+    cli2.textContent = "Wind: " + data.list[0].wind.speed + " MPH"
+    cli2.classList = "card-info";
+    cli1.appendChild(cli2);
+
+    cli3.textContent = "Humidity: " + data.list[0].main.humidity + "%";
+    cli3.classList = "card-info";
+    cli2.appendChild(cli3);
+
+    cli4.textContent = "UV Index: ";
+    cli4.classList = "card-info";
+    cli3.appendChild(cli4);
+
+    forecast.appendChild(divEl1);
 }
 
 var displayFiveDayForecast = function(data) {
+    divEl2.classList = "flex-row justify-space-around card";
+    divEl1.appendChild(divEl2);
+
+    let div1 = document.createElement("div");
+    let f1li1 = document.createElement("li");
+    let f1li2 = document.createElement("li");
+    let f1li3 = document.createElement("li");
+    let tomorrow = moment().add(1,'day').format("dddd, MMMM Do, YYYY");
+
+        div1.classList = "five-day-card";
+        div1.textContent = tomorrow;
+        divEl1.appendChild(div1);
+
+        f1li1.textContent =  "Temp: " + data.list[1].main.temp + "° F";
+        div1.appendChild(f1li1);
+
+        f1li2.textContent = "Wind: " + data.list[1].wind.speed + " MPH"
+        f1li1.appendChild(f1li2);
+
+        f1li3.textContent = "Humidity: " + data.list[1].main.humidity + "%";
+        f1li2.appendChild(f1li3);
+
+        divEl2.appendChild(div1);
+
+    let div2 = document.createElement("div");
+    let f2li1 = document.createElement("li");
+    let f2li2 = document.createElement("li");
+    let f2li3 = document.createElement("li");
+    let twoDays = moment().add(2,'days').format("dddd, MMMM Do, YYYY");
+
+        div2.classList = "five-day-card";
+        div2.textContent = twoDays;
+        divEl2.appendChild(div2);
+        
+        f2li1.textContent = "Temp: " + data.list[2].main.temp + "° F";
+        div2.appendChild(f2li1);
+
+        f2li2.textContent = "Wind: " + data.list[2].wind.speed + " MPH"
+        f2li1.appendChild(f2li2);
+
+        f2li3.textContent = "Humidity: " + data.list[2].main.humidity + "%";
+        f2li2.appendChild(f2li3);
+
+        divEl2.appendChild(div2);
+        
+    let div3 = document.createElement("div");
+    let f3li1 = document.createElement("li");
+    let f3li2 = document.createElement("li");
+    let f3li3 = document.createElement("li");
+    let threeDays = moment().add(3,'days').format("dddd, MMMM Do, YYYY");
+
+        div3.classList = "five-day-card";
+        div3.textContent = threeDays;
+        divEl2.appendChild(div3);
+        
+        f3li1.textContent = "Temp: " + data.list[3].main.temp + "° F";
+        div3.appendChild(f3li1);
+
+        f3li2.textContent = "Wind: " + data.list[3].wind.speed + " MPH"
+        f3li1.appendChild(f3li2);
+
+        f3li3.textContent = "Humidity: " + data.list[3].main.humidity + "%";
+        f3li2.appendChild(f3li3);
+
+        divEl2.appendChild(div3);
+
+    let div4 = document.createElement("div");
+    let f4li1 = document.createElement("li");
+    let f4li2 = document.createElement("li");
+    let f4li3 = document.createElement("li");
+    let fourDays = moment().add(4,'days').format("dddd, MMMM Do, YYYY");
+
+        div4.classList = "five-day-card";
+        div4.textContent = fourDays;
+        divEl2.appendChild(div4);
+        
+        f4li1.textContent = "Temp: " + data.list[4].main.temp + "° F";
+        div4.appendChild(f4li1);
+
+        f4li2.textContent = "Wind: " + data.list[4].wind.speed + " MPH"
+        f4li1.appendChild(f4li2);
+
+        f4li3.textContent = "Humidity: " + data.list[4].main.humidity + "%";
+        f4li2.appendChild(f4li3);
+
+        divEl2.appendChild(div4);
+
+    let div5 = document.createElement("div");
+    let f5li1 = document.createElement("li");
+    let f5li2 = document.createElement("li");
+    let f5li3 = document.createElement("li");
+    let fiveDays = moment().add(5,'days').format("dddd, MMMM Do, YYYY");
+
+        div5.classList = "five-day-card";
+        div5.textContent = fiveDays;
+        divEl2.appendChild(div5);
+        
+        f5li1.textContent = "Temp: " + data.list[5].main.temp + "° F";
+        div5.appendChild(f5li1);
+
+        f5li2.textContent = "Wind: " + data.list[5].wind.speed + " MPH"
+        f5li1.appendChild(f5li2);
+
+        f5li3.textContent = "Humidity: " + data.list[5].main.humidity + "%";
+        f5li2.appendChild(f5li3);
+
+        divEl2.appendChild(div5);
+
+    forecast.appendChild(divEl2);
 
 }
 

@@ -51,8 +51,42 @@ h1 {
     border: black solid 2px;
 }
 
+.search-card {
+    color: white;
+    text-align: center;
+    font-size: 35px;
+    padding: 10px;
+}
+
+.card-header {
+    color: rgb(0, 81, 255);
+    text-align: left;
+    font-size: 35px;
+}
+
 .card-info {
-    color: blue;
+    list-style: none;
+    color: rgb(0, 81, 255);
+    font-size: 28px;
+    margin-top: 45px;
+}
+
+.inline {
+    display: inline;
+}
+
+.five-day-card-header {
+    color: black;
+    font-size: 20px;
+    text-align: left;
+}
+
+.five-day-card {
+    background-color: rgba(17, 0, 255, 0.432);
+    margin: 20px;
+    padding: 15px;
+    list-style: none;
+    font-size: 15px;
 }
 
 #history {

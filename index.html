@@ -14,7 +14,7 @@
 <main class="flex-row justify-space-around">
     <div class="col-3">
       <div class="card" id="card-container">
-        <h3 class="bg-dark text-light card-header">Search By City</h3>
+        <h3 class="bg-dark text-light search-card">Search By City</h3>
         <form id="user-form" class="form-section">
           <label for="city">City: </label>
           <input name="city" id="city" type="text" autofocus="true" class="form-input" />
@@ -25,14 +25,15 @@
     </div>
 
 
-<div class="col-7">
-<h2 class="text-light"id="forecast">Forecast:</h2>
+<div class="col-7 weather-display">
+<h2 id="forecast"></h2>
 
 </main>
 
 
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src="assets/js/script.js"></script>
 </body>
 </html>
