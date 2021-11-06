@@ -6,10 +6,7 @@ var p = document.createElement("p");
 var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
-var cli1 = document.createElement("li");
-var cli2 = document.createElement("li");
-var cli3 = document.createElement("li");
-var cli4 = document.createElement("li");
+
 
 var submitCity = function(event) {
     event.preventDefault();
@@ -20,6 +17,8 @@ var submitCity = function(event) {
     getFiveDayForecast(cityName);
     localStorage.setItem("" + cityName, cityName);
     cityInputEl.value = "";
+    divEl1.innerHTML = "";
+    divEl2.innerHTML = "";
     }
     else {
         alert("Please input a city.")
@@ -59,6 +58,11 @@ var getFiveDayForecast = function(city) {
 };
 
 var displayCurrentWeather = function(data) {
+    var cli1 = document.createElement("li");
+    var cli2 = document.createElement("li");
+    var cli3 = document.createElement("li");
+    var cli4 = document.createElement("li");
+
     divEl1.classList = "card";
     let h1 = document.createElement("h1")
     h1.textContent = data.city.name + " (" + moment().format("dddd, MMMM Do, YYYY") + ")";
@@ -85,7 +89,10 @@ var displayCurrentWeather = function(data) {
 }
 
 var displayFiveDayForecast = function(data) {
+    let img = document.createElement("img");
+
     divEl2.classList = "flex-row justify-space-around card";
+    divEl2.innerHTML = "Five Day Forecast:"
     divEl1.appendChild(divEl2);
 
     let div1 = document.createElement("div");
