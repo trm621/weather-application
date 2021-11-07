@@ -9,7 +9,6 @@ var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
 
-
 var submitCity = function(event) {
     event.preventDefault();
     var cityName = cityInputEl.value.trim();
@@ -19,7 +18,7 @@ var submitCity = function(event) {
     getFiveDayForecast(cityName);
     localStorage.setItem("" + cityName, cityName);
 
-    li.textContent = cityName;
+    li.textContent = localStorage.getItem('' + cityName, cityName)
     li.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
     cardContainer.appendChild(li);
 
@@ -65,6 +64,18 @@ var getFiveDayForecast = function(city) {
 };
 
 var displayCurrentWeather = function(data) {
+    var getUvIndex = function(data) {
+        var uvApiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.city.coord.lat + "&lon=" + data.city.coord.lon + "&appid=2bffd4e95c0b4e30175b53413f54c060";
+        fetch(uvApiURL).then(function(response) {
+        if (response.ok) {
+            console.log(response);
+            response.json().then(function(data) {
+                console.log(data);
+            })
+        }
+    })
+    };
+    getUvIndex(data);
     var cli1 = document.createElement("li");
     var cli2 = document.createElement("li");
     var cli3 = document.createElement("li");
@@ -94,6 +105,7 @@ var displayCurrentWeather = function(data) {
 
     forecast.appendChild(divEl1);
 }
+
 
 var displayFiveDayForecast = function(data) {
     divEl2.classList = "flex-row space-evenly card";
@@ -220,7 +232,6 @@ var displayFiveDayForecast = function(data) {
         divEl2.appendChild(div5);
 
     forecast.appendChild(divEl2);
-
 }
 
 userFormEl.addEventListener('submit', submitCity);
