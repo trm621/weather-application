@@ -64,21 +64,23 @@ var getFiveDayForecast = function(city) {
     });
 };
 
-var displayCurrentWeather = function(data) {
-    var getUvIndex = function(data) {
-        var uvApiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.city.coord.lat + "&lon=" + data.city.coord.lon + "&appid=2bffd4e95c0b4e30175b53413f54c060";
-        fetch(uvApiURL).then(function(response) {
-        if (response.ok) {
-            console.log(response);
-            response.json().then(function(data) {
-                console.log(data);
-                var currentUvi = data.current.uvi;
-                console.log(currentUvi);
-            })
-        }
-    })
+var getUvIndex = function(data) {
+    var uvApiURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.city.coord.lat + "&lon=" + data.city.coord.lon + "&appid=2bffd4e95c0b4e30175b53413f54c060";
+    fetch(uvApiURL).then(function(response) {
+    if (response.ok) {
+        console.log(response);
+        response.json().then(function(data) {
+            console.log(data);
+            var currentUvi = data.current.uvi;
+            console.log(currentUvi);
+            localStorage.setItem("uv", "" + currentUvi)
+        })
     }
+})
+};
 
+var displayCurrentWeather = function(data) {
+   
     getUvIndex(data);
     
     var cli1 = document.createElement("li");
@@ -104,7 +106,7 @@ var displayCurrentWeather = function(data) {
     cli3.classList = "card-info";
     cli2.appendChild(cli3);
 
-    cli4.textContent = "UV Index: " + currentUvi;
+    cli4.textContent = "UV Index: " + "" + localStorage.getItem("uv");
     cli4.classList = "card-info";
     cli3.appendChild(cli4);
 
