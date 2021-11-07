@@ -71,11 +71,15 @@ var displayCurrentWeather = function(data) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
+                var currentUvi = data.current.uvi;
+                console.log(currentUvi);
             })
         }
     })
-    };
+    }
+
     getUvIndex(data);
+    
     var cli1 = document.createElement("li");
     var cli2 = document.createElement("li");
     var cli3 = document.createElement("li");
