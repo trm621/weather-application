@@ -47,8 +47,22 @@ h1 {
     justify-content: space-around;
 }
 
+.space-evenly {
+    justify-content: space-evenly;
+}
+
 .card {
     border: black solid 2px;
+}
+
+.even-width {
+    width: 15%;
+}
+
+.five-day-header {
+    color: black;
+    text-align: left;
+    font-size: 15px;
 }
 
 .search-card {

@@ -4,6 +4,7 @@ var cardContainer = document.querySelector("#card-container");
 var forecast = document.querySelector("#forecast");
 var p = document.createElement("p");
 var li = document.createElement("li");
+var h1 = document.createElement("h1");
 var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
@@ -96,9 +97,7 @@ var displayCurrentWeather = function(data) {
 
 var displayFiveDayForecast = function(data) {
     let img = document.createElement("img");
-
-    divEl2.classList = "flex-row justify-space-around card";
-    divEl2.innerHTML = "Five Day Forecast:"
+    divEl2.classList = "flex-row space-evenly card";
     divEl1.appendChild(divEl2);
 
     let div1 = document.createElement("div");
@@ -107,9 +106,9 @@ var displayFiveDayForecast = function(data) {
     let f1li3 = document.createElement("li");
     let tomorrow = moment().add(1,'day').format("dddd, MMMM Do, YYYY");
 
-        div1.classList = "five-day-card";
+        div1.classList = "five-day-card even-width";
         div1.textContent = tomorrow;
-        divEl1.appendChild(div1);
+        divEl2.appendChild(div1);
 
         f1li1.textContent =  "Temp: " + data.list[1].main.temp + "° F";
         div1.appendChild(f1li1);
@@ -120,6 +119,9 @@ var displayFiveDayForecast = function(data) {
         f1li3.textContent = "Humidity: " + data.list[1].main.humidity + "%";
         f1li2.appendChild(f1li3);
 
+        img.setAttribute("src", src="https://openweathermap.org/img/wn/" + data.list[1].weather[0].icon + "@2x.png")
+        f1li3.appendChild(img);
+
         divEl2.appendChild(div1);
 
     let div2 = document.createElement("div");
@@ -128,7 +130,7 @@ var displayFiveDayForecast = function(data) {
     let f2li3 = document.createElement("li");
     let twoDays = moment().add(2,'days').format("dddd, MMMM Do, YYYY");
 
-        div2.classList = "five-day-card";
+        div2.classList = "five-day-card even-width";
         div2.textContent = twoDays;
         divEl2.appendChild(div2);
         
@@ -141,6 +143,9 @@ var displayFiveDayForecast = function(data) {
         f2li3.textContent = "Humidity: " + data.list[2].main.humidity + "%";
         f2li2.appendChild(f2li3);
 
+        img.setAttribute("src", src="https://openweathermap.org/img/wn/" + data.list[2].weather[0].icon + "@2x.png")
+        f1li3.appendChild(img);
+
         divEl2.appendChild(div2);
         
     let div3 = document.createElement("div");
@@ -149,7 +154,7 @@ var displayFiveDayForecast = function(data) {
     let f3li3 = document.createElement("li");
     let threeDays = moment().add(3,'days').format("dddd, MMMM Do, YYYY");
 
-        div3.classList = "five-day-card";
+        div3.classList = "five-day-card even-width";
         div3.textContent = threeDays;
         divEl2.appendChild(div3);
         
@@ -162,6 +167,9 @@ var displayFiveDayForecast = function(data) {
         f3li3.textContent = "Humidity: " + data.list[3].main.humidity + "%";
         f3li2.appendChild(f3li3);
 
+        img.setAttribute("src", src="https://openweathermap.org/img/wn/" + data.list[3].weather[0].icon + "@2x.png")
+        f1li3.appendChild(img);
+
         divEl2.appendChild(div3);
 
     let div4 = document.createElement("div");
@@ -170,7 +178,7 @@ var displayFiveDayForecast = function(data) {
     let f4li3 = document.createElement("li");
     let fourDays = moment().add(4,'days').format("dddd, MMMM Do, YYYY");
 
-        div4.classList = "five-day-card";
+        div4.classList = "five-day-card even-width";
         div4.textContent = fourDays;
         divEl2.appendChild(div4);
         
@@ -183,6 +191,9 @@ var displayFiveDayForecast = function(data) {
         f4li3.textContent = "Humidity: " + data.list[4].main.humidity + "%";
         f4li2.appendChild(f4li3);
 
+        img.setAttribute("src", src="https://openweathermap.org/img/wn/" + data.list[4].weather[0].icon + "@2x.png")
+        f1li3.appendChild(img);
+
         divEl2.appendChild(div4);
 
     let div5 = document.createElement("div");
@@ -191,7 +202,7 @@ var displayFiveDayForecast = function(data) {
     let f5li3 = document.createElement("li");
     let fiveDays = moment().add(5,'days').format("dddd, MMMM Do, YYYY");
 
-        div5.classList = "five-day-card";
+        div5.classList = "five-day-card even-width";
         div5.textContent = fiveDays;
         divEl2.appendChild(div5);
         
@@ -203,6 +214,9 @@ var displayFiveDayForecast = function(data) {
 
         f5li3.textContent = "Humidity: " + data.list[5].main.humidity + "%";
         f5li2.appendChild(f5li3);
+
+        img.setAttribute("src", src="https://openweathermap.org/img/wn/" + data.list[5].weather[0].icon + "@2x.png")
+        f1li3.appendChild(img);
 
         divEl2.appendChild(div5);
 
