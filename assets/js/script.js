@@ -8,6 +8,7 @@ var h1 = document.createElement("h1");
 var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
+var currentUvi;
 
 var submitCity = function(event) {
     event.preventDefault();
@@ -103,7 +104,7 @@ var displayCurrentWeather = function(data) {
     cli3.classList = "card-info";
     cli2.appendChild(cli3);
 
-    cli4.textContent = "UV Index: ";
+    cli4.textContent = "UV Index: " + currentUvi;
     cli4.classList = "card-info";
     cli3.appendChild(cli4);
 
