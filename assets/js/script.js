@@ -9,6 +9,18 @@ var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
 var currentUvi;
+var cli1 = document.createElement("li");
+var cli2 = document.createElement("li");
+var cli3 = document.createElement("li");
+var cli4 = document.createElement("li");
+var cities = [];
+
+var loadCities = function() {
+    localStorage.getItem("city", cityName);
+    li.textContent = cityName;
+    li.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
+    cardContainer.appendChild(li);
+}
 
 var submitCity = function(event) {
     event.preventDefault();
@@ -17,9 +29,10 @@ var submitCity = function(event) {
     if (cityName) {
     getCurrentWeather(cityName);
     getFiveDayForecast(cityName);
-    localStorage.setItem("" + cityName, cityName);
-
-    li.textContent = localStorage.getItem('' + cityName, cityName)
+    cities.push({city: cityName})
+    localStorage.cities = JSON.stringify(cities);
+    localStorage.getItem("city", cityName);
+    li.textContent = cityName;
     li.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
     cardContainer.appendChild(li);
 
@@ -73,7 +86,13 @@ var getUvIndex = function(data) {
             console.log(data);
             var currentUvi = data.current.uvi;
             console.log(currentUvi);
-            localStorage.setItem("uv", "" + currentUvi)
+            cli4.textContent = "UV Index: " + currentUvi;
+            cli4.classList = "card-info";
+            
+            if (data.current.uvi.value < 5) {
+                currentUvi.setAttribute("style", "background-color:green;")
+            }
+            cli3.appendChild(cli4);
         })
     }
 })
@@ -81,13 +100,6 @@ var getUvIndex = function(data) {
 
 var displayCurrentWeather = function(data) {
    
-    getUvIndex(data);
-    
-    var cli1 = document.createElement("li");
-    var cli2 = document.createElement("li");
-    var cli3 = document.createElement("li");
-    var cli4 = document.createElement("li");
-
     divEl1.classList = "card";
     let h1 = document.createElement("h1")
     h1.textContent = data.city.name + " (" + moment().format("dddd, MMMM Do, YYYY") + ")";
@@ -106,10 +118,7 @@ var displayCurrentWeather = function(data) {
     cli3.classList = "card-info";
     cli2.appendChild(cli3);
 
-    cli4.textContent = "UV Index: " + "" + localStorage.getItem("uv");
-    cli4.classList = "card-info";
-    cli3.appendChild(cli4);
-
+    getUvIndex(data);
     forecast.appendChild(divEl1);
 }
 
