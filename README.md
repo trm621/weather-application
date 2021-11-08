@@ -12,6 +12,7 @@ JavaScript
 https://trm621.github.io/weather-application/
 
 ## Screenshot
+![Imgur](https://imgur.com/WXEOssV.png)
 
 ## Made By
 Thomas Maher
