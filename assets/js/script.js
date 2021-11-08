@@ -5,6 +5,7 @@ var forecast = document.querySelector("#forecast");
 var p = document.createElement("p");
 var li = document.createElement("li");
 var h1 = document.createElement("h1");
+var btn = document.createElement("button");
 var searchHistory = document.getElementById("#history")
 var divEl1 = document.createElement("div");
 var divEl2 = document.createElement("div");
@@ -16,10 +17,16 @@ var cli4 = document.createElement("li");
 var cities = [];
 
 var loadCities = function() {
-    localStorage.getItem("city", cityName);
-    li.textContent = cityName;
-    li.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
-    cardContainer.appendChild(li);
+    var storedCities = JSON.parse(localStorage.getItem("cities", cityName));
+    for (var i = 0; i < storedCities; i++) {
+    btn.textContent = cities[i].city.cityName;
+    btn.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
+    cardContainer.appendChild(btn);
+    return
+}}
+
+var saveCities = function() {
+    localStorage.cities = JSON.stringify(cities);
 }
 
 var submitCity = function(event) {
@@ -30,15 +37,11 @@ var submitCity = function(event) {
     getCurrentWeather(cityName);
     getFiveDayForecast(cityName);
     cities.push({city: cityName})
-    localStorage.cities = JSON.stringify(cities);
-    localStorage.getItem("city", cityName);
-    li.textContent = cityName;
-    li.setAttribute("style", "color:black; padding:10px; font-size:35px; text-align:center; list-style:none");
-    cardContainer.appendChild(li);
-
     cityInputEl.value = "";
     divEl1.innerHTML = "";
     divEl2.innerHTML = "";
+    saveCities();
+    loadCities();
     }
     else {
         alert("Please input a city.")
